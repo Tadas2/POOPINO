@@ -1,0 +1,11 @@
+/package-lock.json
+
+/node_modules
+
+/nbproject
+
+/composer.lock
+
+/app/config/app.php
+
+vendor/
