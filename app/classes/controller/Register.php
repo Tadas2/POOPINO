@@ -27,7 +27,7 @@ class Register extends Base {
                 $this->registerSuccess();
                 break;
         }
-
+    
         $this->page['content'] = $this->form->render();
     }
 

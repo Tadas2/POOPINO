@@ -4,9 +4,13 @@ namespace App\Controller;
 
 class Logout extends Base {
 
-    public function __construct() {
+    /**
+     *
+     * @var \App\Objects\Form\Logout
+     */
+    protected $form;
 
-       
+    public function __construct() {
 
         if (!\App\App::$session->isLoggedIn()) {
             header('Location: register');
@@ -14,18 +18,17 @@ class Logout extends Base {
         } else {
             parent::__construct();
 
-            $form = new \App\Objects\Form\Logout();
-            $form->process();
-            $this->page['content'] = $form->render();
-            
+            $this->form = new \App\Objects\Form\Logout();
+            $this->form->process();
+            $this->page['content'] = $this->form->render();
+
             if (!empty($_POST)) {
-                $safe_input = get_safe_input($form);
-                $form_success = validate_form($safe_input, $form);
-                if ($form_success) {
-                    $form = new \App\Objects\Form\Login();
-                    $form->process();
-                    $this->page['content'] = $form->render();
+                $safe_input = $this->form->getInput();
+
+                if ($safe_input) {
                     \App\App::$session->logout();
+                    header('Location: register');
+                    exit();
                 }
             }
         }
