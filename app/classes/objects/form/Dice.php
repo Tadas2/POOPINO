@@ -8,22 +8,58 @@ class Dice extends \Core\Page\Objects\Form {
         parent::__construct(
                 [
                     'fields' => [
-                        'email' => [
-                            'label' => 'Email',
-                            'type' => 'text',
-                            'placeholder' => 'iveskite savo email',
+                        '1' => [
+                            'label' => '1 babuška',
+                            'name' => 'selection',
+                            'type' => 'radio',
                             'validate' => [
                                 'validate_not_empty',
-                                'validate_email',
                             ]
                         ],
-                        'password' => [
-                            'label' => 'Password',
-                            'type' => 'password',
-                            'placeholder' => 'Slaptazodis',
+                        '2' => [
+                            'label' => '2 babuškos',
+                            'name' => 'selection',
+                            'type' => 'radio',
+                            'value' => 'radio',
                             'validate' => [
                                 'validate_not_empty',
-                            ],
+                            ]
+                        ],
+                        '3' => [
+                            'label' => '3 babuškos',
+                            'name' => 'selection',
+                            'type' => 'radio',
+                            'value' => 'radio',
+                            'validate' => [
+                                'validate_not_empty',
+                            ]
+                        ],
+                        '4' => [
+                            'label' => '4 babuškos',
+                            'name' => 'selection',
+                            'type' => 'radio',
+                            'value' => 'radio',
+                            'validate' => [
+                                'validate_not_empty',
+                            ]
+                        ],
+                        '5' => [
+                            'label' => '5 babuškos',
+                            'name' => 'selection',
+                            'type' => 'radio',
+                            'value' => 'radio',
+                            'validate' => [
+                                'validate_not_empty',
+                            ]
+                        ],
+                        '6' => [
+                            'label' => '6 babuškos',
+                            'name' => 'selection',
+                            'type' => 'radio',
+                            'value' => 'radio',
+                            'validate' => [
+                                'validate_not_empty',
+                            ]
                         ],
                     ],
                     'buttons' => [
@@ -32,7 +68,6 @@ class Dice extends \Core\Page\Objects\Form {
                         ]
                     ],
                     'validate' => [
-                        'validate_login'
                     ],
                 ]
         );

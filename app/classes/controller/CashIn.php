@@ -11,19 +11,18 @@ class CashIn extends Base {
     protected $form;
 
     public function __construct() {
-        parent::__construct();
-
         if (!\App\App::$session->isLoggedIn()) {
             header('Location: register');
             exit();
         }
+        parent::__construct();
         /*
          * content
          */
         $this->form = new \App\Objects\Form\CashIn();
 
         switch ($this->form->process()) {
-            case \App\Objects\Form\CashIn::STATUS_SUCCESS:
+            case \App\Objects\Form\CashIn::STATUS_SUCCESS;
                 $this->inputSuccess();
                 break;
         }
