@@ -11,8 +11,8 @@ require_once '../bootloader.php';
  */
 function validate_not_empty($field_input, &$field, $safe_input) {
     if (strlen($field_input) == 0) {
-        $field['error_msg'] = strtr('Jobans/a tu buhurs/gazele, '
-                . 'kad palikai @field tuscia!', ['@field' => $field['label']
+        $field['error_msg'] = strtr('Neuzpildei, '
+                . '@field !', ['@field' => $field['label']
         ]);
     } else {
         return true;

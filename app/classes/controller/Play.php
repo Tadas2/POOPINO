@@ -25,6 +25,7 @@ class Play extends Base {
 
         switch ($this->form->process()) {
             case \App\Objects\Form\Dice::STATUS_SUCCESS;
+                $this->playSuccess();
                 break;
         }
 
@@ -34,4 +35,14 @@ class Play extends Base {
         $this->page['content'] = $view->render(ROOT_DIR . '/App/views/content.tpl.php') . $this->form->render();
     }
 
+    public function playSuccess() {
+         $safe_input = $this->form->getInput();
+         var_dump($safe_input);
+         var_dump($safe_input['input']);
+        if (isset($_POST['submit'])) {
+            if (isset($_POST['radio'])) {
+                echo "You have selected :" . $_POST['radio']; 
+            }
+        }
+    }
 }
