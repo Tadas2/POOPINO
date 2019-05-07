@@ -27,13 +27,13 @@ class Register extends Base {
                 $this->registerSuccess();
                 break;
         }
-    
+
         $this->page['content'] = $this->form->render();
     }
 
     public function registerSuccess() {
         $safe_input = $this->form->getInput();
-
+        $balance_repo = new \App\User\Repository(\App\App::$db_conn);
         $user = new \Core\User\User([
             'email' => $safe_input['email'],
             'full_name' => $safe_input['full_name'],
@@ -46,6 +46,12 @@ class Register extends Base {
             'is_active' => true
         ]);
 
+        $balance_user = new \App\User\User([
+            'email' => $safe_input['email'],
+            'balance' => rand(10, 50),
+        ]);
+
+        $balance_repo->insert($balance_user);
         \App\App::$user_repo->insert($user);
     }
 

@@ -45,6 +45,14 @@ function validate_pos_number($field_input, &$field, $safe_input) {
     }
 }
 
+function validate_above_1($field_input, &$field, $safe_input) {
+    if ($field_input <= 0) {
+        $field['error_msg'] = 'Negali buti neigiamas skaitmuo';
+    } else {
+        return true;
+    }
+}
+
 function validate_is_number($field_input, &$field, $safe_input) {
     if (!is_numeric($field_input)) {
         $field['error_msg'] = 'Ei, reikia ivesti skaiciu!';
@@ -57,6 +65,14 @@ function validate_min_sum($field_input, &$field, $safe_input) {
     $min_char = 5;
     if ($field_input < $min_char) {
         $field['error_msg'] = 'Per maza suma';
+    } else {
+        return true;
+    }
+}
+
+function validate_max_number($field_input, &$field, $safe_input) {
+    if ($field_input >= 10000) {
+        $field['error_msg'] = 'Nestatyk tiek daug pinigu';
     } else {
         return true;
     }

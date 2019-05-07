@@ -1,4 +1,5 @@
 <form method="POST" enctype="multipart/form-data">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
     <?php foreach ($view['fields'] as $field_id => $field): ?>
         <label>
             <span><?php print $field['label']; ?></span>
@@ -9,10 +10,10 @@
                 <input type="<?php print $field['type']; ?>" name="<?php print $field_id; ?>" placeholder="<?php print $field['placeholder']; ?>"/>
                 <!-- Radio input -->
             <?php elseif ($field['type'] == 'radio'): ?>
-                <?php foreach ($field['options'] as $key => $value): ?> 
+                <?php foreach ($field['options'] as $option): ?> 
                     <label>
-                        <input type="<?php print $field['type']; ?>" name="<?php print $field['name']; ?>" value="<?php print $value; ?>"/> 
-                        <img src="images/<?php print $key; ?>.jpg" alt="babuska" height="200" width="200">
+                        <input type="<?php print $field['type']; ?>" name="<?php print $field['name']; ?>" value="<?php print $option['value']; ?>"/> 
+                        <img src="images/<?php print $option['img']; ?>.jpg" alt="babuska" height="200" width="200">
                     </label>
                 <?php endforeach; ?>
             <?php elseif ($field['type'] == 'float'): ?>

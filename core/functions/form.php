@@ -22,7 +22,6 @@ function validate_not_empty($field_input, &$field, $safe_input) {
 function validate_user_exists($field_input, &$field, &$safe_input) {
 
     if (!\App\App::$user_repo->exists($field_input)) {
-        var_dump('neEXISTUOJA');
         return true;
     } else {
         var_dump('ERROR');

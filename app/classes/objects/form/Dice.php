@@ -13,7 +13,30 @@ class Dice extends \Core\Page\Objects\Form {
                             'type' => 'radio',
                             'label' => '',
                             'options' => [
-                                'bobute-1'=> 1, 'bobute-2' => 2, 'bobute-3'=> 3, 'bobute-4' => 4, 'bobute-5' => 5, 'bobute-6'=>6
+                                [
+                                    'value' => 1,
+                                    'img' => 'bobute-1'
+                                ],
+                                [
+                                    'value' => 2,
+                                    'img' => 'bobute-2'
+                                ],
+                                [
+                                    'value' => 3,
+                                    'img' => 'bobute-3'
+                                ],
+                                [
+                                    'value' => 4,
+                                    'img' => 'bobute-4'
+                                ],
+                                [
+                                    'value' => 5,
+                                    'img' => 'bobute-5'
+                                ],
+                                [
+                                    'value' => 6,
+                                    'img' => 'bobute-6'
+                                ],
                             ],
                             'validate' => [
                             ]
@@ -25,13 +48,14 @@ class Dice extends \Core\Page\Objects\Form {
                             'validate' => [
                                 'validate_not_empty',
                                 'validate_is_number',
-                                'validate_pos_number'
+                                'validate_above_1',
+                                'validate_max_number'
                             ]
                         ],
                     ],
                     'buttons' => [
                         'submit' => [
-                            'text' => 'Irasyti!'
+                            'text' => 'Mesti Bobute!'
                         ]
                     ],
                     'validate' => [
