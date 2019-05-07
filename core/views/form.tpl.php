@@ -9,8 +9,12 @@
                 <input type="<?php print $field['type']; ?>" name="<?php print $field_id; ?>" placeholder="<?php print $field['placeholder']; ?>"/>
                 <!-- Radio input -->
             <?php elseif ($field['type'] == 'radio'): ?>
-                <input type="<?php print $field['type']; ?>" name="<?php print $field['name']; ?>"/>
-                <img src="images/<?php print $field_id; ?>.jpg" alt="babuska" height="200" width="200">
+                <?php foreach ($field['options'] as $key => $value): ?> 
+                    <label>
+                        <input type="<?php print $field['type']; ?>" name="<?php print $field['name']; ?>" value="<?php print $value; ?>"/> 
+                        <img src="images/<?php print $key; ?>.jpg" alt="babuska" height="200" width="200">
+                    </label>
+                <?php endforeach; ?>
             <?php elseif ($field['type'] == 'float'): ?>
                 <input type="<?php print $field['type']; ?>" name="<?php print $field_id; ?>" placeholder="<?php print $field['placeholder']; ?>" step="0.01"/>
             <?php elseif ($field['type'] == 'number'): ?>

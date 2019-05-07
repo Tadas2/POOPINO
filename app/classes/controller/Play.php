@@ -36,13 +36,9 @@ class Play extends Base {
     }
 
     public function playSuccess() {
-         $safe_input = $this->form->getInput();
-         var_dump($safe_input);
-         var_dump($safe_input['input']);
-        if (isset($_POST['submit'])) {
-            if (isset($_POST['radio'])) {
-                echo "You have selected :" . $_POST['radio']; 
-            }
-        }
+         //$safe_input = $this->form->getInput();
+
+         var_dump($_POST['selection']);
+         var_dump($_POST['input']);
     }
 }

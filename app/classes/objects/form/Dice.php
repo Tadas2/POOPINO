@@ -8,57 +8,20 @@ class Dice extends \Core\Page\Objects\Form {
         parent::__construct(
                 [
                     'fields' => [
-                        'bobute-1' => [
-                            'label' => '1 babuška',
+                        'bobutes' => [
                             'name' => 'selection',
                             'type' => 'radio',
-                            'validate' => [
-                            ]
-                        ],
-                        'bobute-2' => [
-                            'label' => '2 babuškos',
-                            'name' => 'selection',
-                            'type' => 'radio',
-                            'value' => 'radio',
-                            'validate' => [
-                            ]
-                        ],
-                        'bobute-3' => [
-                            'label' => '3 babuškos',
-                            'name' => 'selection',
-                            'type' => 'radio',
-                            'value' => 'radio',
-                            'validate' => [
-                            ]
-                        ],
-                        'bobute-4' => [
-                            'label' => '4 babuškos',
-                            'name' => 'selection',
-                            'type' => 'radio',
-                            'value' => 'radio',
-                            'validate' => [
-                            ]
-                        ],
-                        'bobute-5' => [
-                            'label' => '5 babuškos',
-                            'name' => 'selection',
-                            'type' => 'radio',
-                            'value' => 'radio',
-                            'validate' => [
-                            ]
-                        ],
-                        'bobute-6' => [
-                            'label' => '6 babuškos',
-                            'name' => 'selection',
-                            'type' => 'radio',
-                            'value' => 'radio',
+                            'label' => '',
+                            'options' => [
+                                'bobute-1'=> 1, 'bobute-2' => 2, 'bobute-3'=> 3, 'bobute-4' => 4, 'bobute-5' => 5, 'bobute-6'=>6
+                            ],
                             'validate' => [
                             ]
                         ],
                         'input' => [
-                            'label' => 'Tavo statymas',
+                            'label' => 'Statai',
                             'type' => 'number',
-                            'placeholder' => 'iveskite savo statoma suma',
+                            'placeholder' => 'iveskite statoma suma',
                             'validate' => [
                                 'validate_not_empty',
                                 'validate_is_number',
