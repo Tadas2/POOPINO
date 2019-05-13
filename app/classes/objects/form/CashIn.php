@@ -9,20 +9,22 @@ class CashIn extends \Core\Page\Objects\Form {
                 [
                     'fields' => [
                         'balance' => [
-                            'label' => 'Ideti piniguuu',
+                            'label' => 'Įdėti pinigų',
                             'type' => 'text',
-                            'placeholder' => 'pinigeliai',
+                            'placeholder' => 'čia',
                             'validate' => [
                                 'validate_not_empty',
                                 'validate_is_number',
                                 'validate_pos_number',
-                                'validate_min_sum'
+                                'validate_min_sum',
+                                'validate_max_number',
+                                'validate_is_float',
                             ]
                         ],
                     ],
                     'buttons' => [
                         'submit' => [
-                            'text' => 'Ideti'
+                            'text' => 'Įdėti'
                         ]
                     ],
                     'validate' => [

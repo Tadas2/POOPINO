@@ -34,7 +34,7 @@ class Register extends \Core\Page\Objects\Form {
                     'validate' => [
                         'validate_not_empty',
                         'validate_age',
-                    ]
+                    ],
                 ],
                 'gender' => [
                     'label' => 'Gender',
@@ -57,12 +57,13 @@ class Register extends \Core\Page\Objects\Form {
                     'options' => \Core\User\User::getOrientationOptions(),
                 ],
                 'photo' => [
-                    'label' => 'photo',
+                    'label' => 'Photo',
                     'type' => 'file',
                     'placeholder' => 'file',
                     'validate' => [
                         'validate_file'
-                    ]
+                    ],
+                    'required' => false
                 ],
                 'password' => [
                     'label' => 'Password',

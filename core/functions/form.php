@@ -11,7 +11,7 @@ require_once '../bootloader.php';
  */
 function validate_not_empty($field_input, &$field, $safe_input) {
     if (strlen($field_input) == 0) {
-        $field['error_msg'] = strtr('Neuzpildei, '
+        $field['error_msg'] = strtr('Neuzpildei- '
                 . '@field !', ['@field' => $field['label']
         ]);
     } else {
@@ -24,7 +24,6 @@ function validate_user_exists($field_input, &$field, &$safe_input) {
     if (!\App\App::$user_repo->exists($field_input)) {
         return true;
     } else {
-        var_dump('ERROR');
         $field['error_msg'] = 'Tokiu emailu useris jau yra!';
     }
 }
@@ -85,16 +84,6 @@ function validate_login(&$safe_input, &$form) {
     }
 
     $form['error_msg'] = 'Blogas Email/Password!';
-}
-
-function validate_form_file(&$safe_input, &$form) {
-    $file_saved_url = save_file($safe_input['photo']);
-    if ($file_saved_url) {
-        $safe_input['photo'] = 'uploads/' . $file_saved_url;
-        return true;
-    } else {
-        $form['error_msg'] = 'blogas failas';
-    }
 }
 
 function save_file($file, $dir = 'uploads', $allowed_types = ['image/png', 'image/jpeg', 'image/gif']) {

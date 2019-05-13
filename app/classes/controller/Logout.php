@@ -17,9 +17,8 @@ class Logout extends Base {
             exit();
         } else {
             parent::__construct();
-
             $this->form = new \App\Objects\Form\Logout();
-            $this->form->process();
+            $this->form->process();   
             $this->page['content'] = $this->form->render();
 
             if (!empty($_POST)) {

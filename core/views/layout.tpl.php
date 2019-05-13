@@ -18,7 +18,7 @@
             <?php endforeach; ?>
         <?php endif; ?>
     </head>
-    <body>
+    <body class="container">
         <!-- Scripts (Body Start) -->           
         <?php if ($view['scripts']['body_start'] ?? false): ?>    
             <?php foreach ($view['scripts']['body_start'] as $script): ?>

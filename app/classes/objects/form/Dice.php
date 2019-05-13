@@ -9,9 +9,8 @@ class Dice extends \Core\Page\Objects\Form {
                 [
                     'fields' => [
                         'bobutes' => [
-                            'name' => 'selection',
+                            'label' => 'Rinkis bobutę',
                             'type' => 'radio',
-                            'label' => '',
                             'options' => [
                                 [
                                     'value' => 1,
@@ -39,12 +38,14 @@ class Dice extends \Core\Page\Objects\Form {
                                 ],
                             ],
                             'validate' => [
-                            ]
+                                'validate_not_empty'
+                            ],
+                            'filter' => FILTER_VALIDATE_INT
                         ],
-                        'input' => [
-                            'label' => 'Statai',
+                        'bobutes_input' => [
+                            'label' => 'Tavo statoma suma',
                             'type' => 'number',
-                            'placeholder' => 'iveskite statoma suma',
+                            'placeholder' => 'statyk atsakingai',
                             'validate' => [
                                 'validate_not_empty',
                                 'validate_is_number',

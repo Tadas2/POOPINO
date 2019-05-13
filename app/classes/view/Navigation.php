@@ -8,8 +8,15 @@ class Navigation extends \Core\Page\View {
         return parent::render($tpl_path);
     }
 
+    public function setUser($name, $balance) {
+        $this->data['user'] = [
+            'name' => $name,
+            'balance' => $balance,
+        ];
+    }
+
     public function addLink($href, $title) {
-        $this->data[] = [
+        $this->data['links'][] = [
             'link' => $href,
             'title' => $title
         ];
@@ -30,7 +37,7 @@ class Navigation extends \Core\Page\View {
     }
 
     public function removeLinks() {
-        $this->data = [];
+        $this->data['links'] = [];
     }
 
 }

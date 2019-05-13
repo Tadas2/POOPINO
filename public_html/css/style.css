@@ -1,41 +1,45 @@
-form {
-    max-width: 300px;
-    text-align: center;
-}   
-
-form input {
-    display: block;
+.bobutes{
     margin: 10px;
+    display: flex;
+}
+
+.user-data {
+    display: block;
+    text-align: end;
     margin-left: auto;
-    margin-right: auto;
+}
+
+h1, h2, h3, h4 {
     text-align: center;
 }
 
-form select {
-    display: block;
-    margin: 10px;
-    margin-left: auto;
-    margin-right: auto;
+h2 {
+    color: #7D7C7B;  
+    margin: 10px auto;
 }
 
-form {
-    max-width: 300px;
-    text-align: center;
-}   
-
-form input {
-    display: block;
-    margin: 10px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+h3 {
+    color: #FBD04B;
 }
 
-form select {
-    display: block;
-    margin: 10px;
-    margin-left: auto;
-    margin-right: auto;
+h4 {
+    color: #007bff;
+    margin: 20px auto 30px auto;
+}
+
+a:hover { 
+    text-decoration: underline; 
+}
+
+.error {
+    color: red;
+    margin: auto;
+}
+
+.navigation {
+    border-bottom: 1px solid #bebebe;
+    margin-bottom: 30px;
+    margin-top: 20px;
 }
 
 /* HIDE RADIO */
@@ -51,7 +55,119 @@ form select {
     cursor: pointer;
 }
 
+img {
+    transition: all .2s ease-in-out;
+    padding: 5px;
+    filter: grayscale(100%);
+}
+img:hover {
+    transform: scale(1.1);
+    filter: none;
+}
+
 /* CHECKED STYLES */
 [type=radio]:checked + img {
-    outline: 2px solid #f00;
+    outline: 2px solid #33ccff; 
+    filter: none;
 }
+
+.play form {
+    width: 1000px;
+    text-align: center;
+    margin: auto;
+
+}
+
+.register {
+    text-align: center;
+    margin: auto;
+}
+
+.register form {
+    margin: 20px auto;
+    padding: 50px;
+    display: inline-grid;
+    border: 1px solid #bebebe;
+    transition: all .4s ease-in-out;
+}
+.register form:hover {
+    border: 2px solid #FBD04B;
+    padding: 55px;
+    transition: all .4s ease-in-out;
+}
+
+.register form label {
+    padding: 10px;
+}
+
+.register form label span {
+    margin-right: 10px;
+    transition: all .1s ease-in-out;
+}
+
+.register form label:hover {
+    color: #FBD04B;
+    transition: all .1s ease-in-out;
+}
+
+.login {
+    text-align: center;
+}
+
+.login form {
+    margin: 20px auto;
+    padding: 50px;
+    display: inline-grid;
+    border: 1px solid #bebebe;
+    transition: all .4s ease-in-out;
+}
+
+.login form:hover {
+    border: 2px solid #FBD04B;
+    padding: 55px;
+    transition: all .4s ease-in-out;
+}
+
+.login form span {
+    padding:5px;
+    margin: 5px;
+}
+
+.login form input {
+    padding: 5px;
+    margin: 5px;
+}
+
+.play form .bobutes span {
+    display:none;
+}
+
+.play form .bobutes {
+    width: 1000px;
+    margin: 30px auto;
+    display: flex;
+}
+
+.play form button{
+    display: flex;
+    margin: 20px auto;
+}
+
+.play form .bobutes_input {
+    margin: 30px auto;
+}
+
+.play form .bobutes_input span {
+    padding:5px;
+    margin: 5px;
+}
+
+.play form .bobutes_input input {
+    padding: 5px;
+    margin: 5px;
+}
+
+.footer {
+    margin: 20px;
+}
+

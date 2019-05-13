@@ -5,22 +5,19 @@ namespace App\Controller;
 class Play extends Base {
 
     /**
-     *
      * @var \App\Objects\Form\Dice
      */
     protected $form;
+    protected $message;
 
     public function __construct() {
-
         if (!\App\App::$session->isLoggedIn()) {
             header('Location: register');
             exit();
         }
         parent::__construct();
 
-        /*
-         * content
-         */
+        /** @var \App\Objects\Form\Dice Dice class */
         $this->form = new \App\Objects\Form\Dice();
 
         switch ($this->form->process()) {
@@ -30,48 +27,57 @@ class Play extends Base {
         }
 
         $view = new \Core\Page\View([
-            'title' => 'Spėk kurią bobutę išridensi',
+            'title' => 'Bobutės ridenimo žaidimas',
+            'balance' => 'Šiuo metu tavo balansas yra ' . $this->app_user->getBalance() . '$',
+            'form' => $this->form->render(),
+            'message' => $this->getMessage(),
+            'class' => 'play'
         ]);
-        $this->page['content'] = $view->render(ROOT_DIR . '/App/views/content.tpl.php') . $this->form->render();
+        
+        $this->page['content'] = $view->render(ROOT_DIR . '/App/views/content.tpl.php');
+    }
+
+    public function setMessage($message) {
+        $this->message = $message;
+    }
+
+    public function getMessage() {
+        return $this->message;
     }
 
     public function playSuccess() {
         $safe_input = $this->form->getInput();
-        $balance_repo = new \App\User\Repository(\App\App::$db_conn);
         $email = \App\App::$session->getUser()->getEmail();
-        var_dump($email);
-        $user_balance = $balance_repo->load($email)->getBalance();
-        var_dump($user_balance);
+        $user_balance = $this->app_user->getBalance();
         $rand_bobute = rand(1, 6);
-        $bandymo_kaina = $safe_input['input'];
-        $bandymas = $_POST['selection'];
+        $bandymo_kaina = $safe_input['bobutes_input'];
+        $bandymas = $safe_input['bobutes'];
         $win_koef = 2.5;
+        $win_sum = $win_koef * $bandymo_kaina;
 
         if ($user_balance >= $bandymo_kaina) {
             if ($rand_bobute == $bandymas) {
-                //laimejai 
-                //i userio balance 
-                //prideti 
-                //bandymo kaina * koeficinetas
-                $user = new \App\User\User([
+                $this->app_user = new \App\User\User([
                     'email' => $email,
-                    'balance' => $user_balance + ($win_koef * $bandymo_kaina)
+                    'balance' => $user_balance + ($win_sum)
                 ]);
 
-                $balance_repo->update($user);
-                print 'laimejai';
+                $this->app_repo->update($this->app_user);
+                $msg = 'Sveikinu! Laimėjai ' . $win_sum . '$';
+                $this->setMessage($msg);
             } else {
-                //praleimejai
-                $user = new \App\User\User([
+                $this->app_user = new \App\User\User([
                     'email' => $email,
                     'balance' => $user_balance - $bandymo_kaina
                 ]);
 
-                $balance_repo->update($user);
-                print 'pralaimejai';
+                $this->app_repo->update($this->app_user);
+                $msg = 'Ups, nepasisekė';
+                $this->setMessage($msg);
             }
         } else {
-            print 'neturi tiek pinigu kad galetum tiek statyti';
+            $msg = 'Deja, statyti nori daugiau, nei turi pinigų...';
+            $this->setMessage($msg);
         }
     }
 

@@ -9,6 +9,7 @@ class Register extends Base {
      * @var \App\Objects\Form\Register
      */
     protected $form;
+    protected $message;
 
     public function __construct() {
         if (\App\App::$session->isLoggedIn()) {
@@ -21,19 +22,36 @@ class Register extends Base {
          * content
          */
         $this->form = new \App\Objects\Form\Register();
+        $view_content = [
+            'title' => 'Registracija',
+            'class' => 'register'
+        ];
 
         switch ($this->form->process()) {
             case \App\Objects\Form\Register::STATUS_SUCCESS:
                 $this->registerSuccess();
+                $view_content['message'] = $this->getMessage();
                 break;
+
+            default:
+                $view_content['form'] = $this->form->render();
         }
 
-        $this->page['content'] = $this->form->render();
+        $view = new \Core\Page\View($view_content);
+        $this->page['content'] = $view->render(ROOT_DIR . '/App/views/content.tpl.php');
+    }
+
+    public function setMessage($message) {
+        $this->message = $message;
+    }
+
+    public function getMessage() {
+        return $this->message;
     }
 
     public function registerSuccess() {
         $safe_input = $this->form->getInput();
-        $balance_repo = new \App\User\Repository(\App\App::$db_conn);
+
         $user = new \Core\User\User([
             'email' => $safe_input['email'],
             'full_name' => $safe_input['full_name'],
@@ -51,8 +69,10 @@ class Register extends Base {
             'balance' => rand(10, 50),
         ]);
 
-        $balance_repo->insert($balance_user);
+        $this->app_repo->insert($balance_user);
         \App\App::$user_repo->insert($user);
+        $msg = 'Už registraciją gavai dovanų ' . $balance_user->getBalance() . '$';
+        $this->setMessage($msg);
     }
 
 }

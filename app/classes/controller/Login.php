@@ -17,6 +17,7 @@ class Login extends Base {
             exit();
         }
         parent::__construct();
+
         /*
          * content
          */
@@ -29,7 +30,12 @@ class Login extends Base {
                 break;
         }
 
-        $this->page['content'] = $this->form->render();
+        $view = new \Core\Page\View([
+            'title' => 'Prisijungimas',
+            'form' => $this->form->render(),
+            'class' => 'login'
+        ]);
+        $this->page['content'] = $view->render(ROOT_DIR . '/App/views/content.tpl.php');
     }
 
 }

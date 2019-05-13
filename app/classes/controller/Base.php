@@ -4,55 +4,47 @@ namespace App\Controller;
 
 class Base extends \Core\Page\Controller {
 
+    protected $nav;
+    protected $app_repo;
+    protected $app_user;
+
     public function __construct() {
         parent::__construct();
+        $this->page['stylesheets'][] = 'css/style.css';
+        $this->page['stylesheets'][] = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css";
+        $this->page['scripts']['body_end'][] = "https://code.jquery.com/jquery-3.3.1.slim.min.js";
+        $this->page['scripts']['body_end'][] = "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js";
+        $this->page['scripts']['body_end'][] = "https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js";
 
-        /*
-         * Nav
-         */
+
+        /** @var \App\User\Repository User balance repository */
+        $this->app_repo = new \App\User\Repository(\App\App::$db_conn);
+
+        /** @var \App\View\Navigation Navigation class */
+        $this->nav = new \App\View\Navigation();
 
         if (!\App\App::$session->isLoggedIn()) {
-
-            $nav = new \App\View\Navigation([
-                [
-                    'link' => 'register',
-                    'title' => 'Register'
-                ],
-                [
-                    'link' => 'login',
-                    'title' => 'Login'
-                ],
-            ]);
+            $this->nav->addLink('register', 'Register');
+            $this->nav->addLink('login', 'Login');
         } else {
-            $nav = new \App\View\Navigation([
-                [
-                    'link' => 'play',
-                    'title' => 'Play'
-                ],
-                [
-                    'link' => 'cashin',
-                    'title' => 'Cash-In'
-                ],
-                [
-                    'link' => 'logout',
-                    'title' => 'Logout'
-                ],
-            ]);
+            $this->app_user = $this->app_repo->load(\App\App::$session->getUser()->getEmail());
+            $this->nav->addLink('play', 'Play');
+            $this->nav->addLink('cashin', 'Cashin');
+            $this->nav->addLink('logout', 'Logout');
         }
+    }
 
-        $this->page['header'] = $nav->render();
-
-
-
-
-        /*
-         * Footer
-         */
-        $foot = new \App\View\Footer([
+    public function onRender() {
+        $this->page['footer'] = (new \App\View\Footer([
             'title' => '©RutaTadas2019',
-        ]);
+        ]))->render();     
+        
+        if ($this->app_user) {
+            $this->nav->setUser(\App\App::$session->getUser()->getFullName(), $this->app_user->getBalance());
+        }
+        $this->page['header'] = $this->nav->render();
 
-        $this->page['footer'] = $foot->render();
+        return (new \Core\Page\View($this->page))->render(ROOT_DIR . '/core/views/layout.tpl.php');
     }
 
 }

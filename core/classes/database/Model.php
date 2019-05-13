@@ -69,7 +69,7 @@ class Model extends \Core\Database\Abstracts\Model {
     public function exists($conditions) {
         $sql = strtr('SELECT EXISTS (SELECT 1 FROM @table WHERE @conditions)', [
             '@table' => SQLBuilder::table($this->table_name),
-            '@conditions' => SQLBuilder::columnsEqualBinds(array_keys($conditions))
+            '@conditions' => SQLBuilder::columnsEqualBinds(array_keys($conditions), ' AND ')
         ]);
 
         $query = $this->pdo->prepare($sql);

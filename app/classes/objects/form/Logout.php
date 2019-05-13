@@ -10,7 +10,7 @@ class Logout extends \Core\Page\Objects\Form {
                     'fields' => [],
                     'buttons' => [
                         'submit' => [
-                            'text' => 'Logout bič!'
+                            'text' => 'Logout!'
                         ]
                     ],
                     'validate' => [],

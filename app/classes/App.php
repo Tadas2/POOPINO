@@ -17,7 +17,8 @@ class App extends \App\Abstracts\App {
         if ($controller) {
             print $controller->onRender();
         } else {
-            header('HTTP/1.0 404 Not Found');
+            header('Location: /');
+            exit();
         }
     }
 

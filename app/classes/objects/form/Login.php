@@ -11,7 +11,7 @@ class Login extends \Core\Page\Objects\Form {
                         'email' => [
                             'label' => 'Email',
                             'type' => 'text',
-                            'placeholder' => 'iveskite savo email',
+                            'placeholder' => 'įveskite savo email',
                             'validate' => [
                                 'validate_not_empty',
                                 'validate_email',
@@ -20,7 +20,7 @@ class Login extends \Core\Page\Objects\Form {
                         'password' => [
                             'label' => 'Password',
                             'type' => 'password',
-                            'placeholder' => 'Slaptazodis',
+                            'placeholder' => 'Slaptažodis',
                             'validate' => [
                                 'validate_not_empty',
                             ],
@@ -28,7 +28,7 @@ class Login extends \Core\Page\Objects\Form {
                     ],
                     'buttons' => [
                         'submit' => [
-                            'text' => 'Irasyti!'
+                            'text' => 'Įrašyti!'
                         ]
                     ],
                     'validate' => [

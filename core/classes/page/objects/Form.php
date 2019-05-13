@@ -58,18 +58,23 @@ class Form {
         }
         if ($success) {
             foreach ($this->form['fields'] as $field_id => &$field) {
-                foreach ($field['validate'] as $validator) {
-                    if (is_callable($validator)) {
-                        $field['id'] = $field_id;
+                $required = $field['required'] ?? true;
+                $is_empty = strlen($this->input[$field_id]) == 0;
+                
+                if ($required || !$is_empty) {
+                    foreach ($field['validate'] as $validator) {
+                        if (is_callable($validator)) {
+                            $field['id'] = $field_id;
 
-                        if (!$validator($this->input[$field_id], $field, $this->input)) {
-                            $success = false;
-                            break;
+                            if (!$validator($this->input[$field_id], $field, $this->input)) {
+                                $success = false;
+                                break;
+                            }
+                        } else {
+                            throw new Exception(strtr('Not callable @validator function', [
+                                '@validator' => $validator
+                            ]));
                         }
-                    } else {
-                        throw new Exception(strtr('Not callable @validator function', [
-                            '@validator' => $validator
-                        ]));
                     }
                 }
             }

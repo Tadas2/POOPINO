@@ -1,4 +1,4 @@
-<div class="footer">
-   <h3><?php print $view['title']; ?></h3>
+<div class="footer fixed-bottom text-right">
+    <div><?php print $view['title']; ?></div>
 </div>
 
